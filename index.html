@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delayed Hover Fade</title>
+  <style>
+    body {
+      background-color: #2f2f2f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .boxes {
+      display: flex;
+      flex-wrap: wrap;
+      width: 90vw;
+      max-width: 1200px;
+    }
+
+    .box {
+      background-color: black;
+      height: 10px;
+      width: 10px;
+      margin: 1px;
+      transition: background-color 1.5s ease-in-out; /* smooth fade out */
+    }
+
+    .box.active {
+      background-color: rgb(247, 255, 12); /* instant on hover */
+      transition: background-color 0.1s ease-in-out; /* fast hover in */
+    }
+  </style>
+</head>
+<body>
+  <div class="boxes" id="boxes"></div>
+
+  <script>
+    const boxesContainer = document.getElementById("boxes");
+    const totalBoxes = 1955; // adjust for how many you want
+
+    // Generate boxes dynamically
+    for (let i = 0; i < totalBoxes; i++) {
+      const box = document.createElement("div");
+      box.classList.add("box");
+
+      // Hover effect
+      box.addEventListener("mouseenter", () => {
+        box.classList.add("active");
+        setTimeout(() => box.classList.remove("active"), 5000);
+      });
+
+      boxesContainer.appendChild(box);
+    }
+  </script>
+</body>
+</html>
